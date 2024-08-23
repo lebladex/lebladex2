@@ -1,0 +1,23 @@
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/jeux')
+def jeux():
+    jeux = ['Cyberpunk 2077', 'The Legend of Zelda', 'Final Fantasy VII Remake']
+    return render_template('jeux.html', jeux=jeux)
+
+@app.route('/forum')
+def forum():
+    return render_template('forum.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
