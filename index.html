@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone Lebladex</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0c0c0c;
+            color: #ffffff;
+        }
+        header {
+            background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header::before, header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                0deg,
+                transparent,
+                #00ffff,
+                #00ffff
+            );
+            transform-origin: bottom right;
+            animation: rotate 6s linear infinite;
+        }
+        header::after {
+            animation-delay: -3s;
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .header-content {
+            position: relative;
+            z-index: 1;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5em;
+            margin: 0;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+            transition: all 0.3s ease;
+        }
+        h1:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
+        }
+        .power-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: #ff00ff;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .power-button::before {
+            content: '⏻';
+            font-size: 24px;
+            color: #1a1a1a;
+        }
+        .power-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #ff00ff;
+        }
+        nav {
+            background-color: #1a1a1a;
+            padding: 10px;
+            position: relative;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            font-family: 'Press Start 2P', cursive;
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            overflow: hidden;
+        }
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background-color: #ff00ff;
+            transition: all 0.3s ease;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background-color: #ff00ff;
+            transition: all 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff00ff;
+            transform: scale(1.1);
+            text-shadow: 0 0 5px #ff00ff;
+        }
+        nav ul li a:hover::before {
+            left: 0;
+        }
+        nav ul li a:hover::after {
+            right: 0;
+        }
+        .plus-button {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: #00ffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .plus-button::before {
+            content: '+';
+            font-size: 24px;
+            color: #1a1a1a;
+        }
+        .plus-button:hover {
+            transform: translateY(-50%) rotate(180deg);
+            background-color: #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+        .gaming-text {
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .gaming-text::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                0deg,
+                transparent,
+                #00ffff,
+                #00ffff
+            );
+            transform-origin: bottom right;
+            animation: rotate 6s linear infinite;
+            opacity: 0.1;
+        }
+        .gaming-text p {
+            font-size: 1em;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff, 0 0 20px #00ffff;
+            }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+                opacity: 0.4;
+                text-shadow: none;
+            }
+        }
+        .gaming-text:hover p {
+            animation: flicker 2s infinite alternate;
+        }
+        .bio-section {
+            background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bio-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                0deg,
+                transparent,
+                #00ffff,
+                #00ffff
+            );
+            transform-origin: bottom right;
+            animation: rotate 6s linear infinite;
+            opacity: 0.1;
+        }
+        .bio-title {
+            font-family: 'Press Start 2P', cursive;
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .bio-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .bio-text {
+            flex: 1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            font-size: 0.9em;
+            line-height: 1.6;
+            padding-right: 20px;
+        }
+        .bio-stats {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .stat-container {
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-family: 'Press Start 2P', cursive;
+            color: #00ffff;
+            font-size: 0.8em;
+            margin-bottom: 5px;
+        }
+        .stat-bar {
+            height: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .stat-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+        .stat-percentage {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+            font-size: 0.7em;
+        }
+        .strength .stat-fill { background-color: #ff0000; }
+        .agility .stat-fill { background-color: #00ff00; }
+        .intelligence .stat-fill { background-color: #0000ff; }
+        .charisma .stat-fill { background-color: #ffff00; }
+        @keyframes neonFlicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 
+                    0 0 5px #ff00de,
+                    0 0 10px #ff00de,
+                    0 0 20px #ff00de,
+                    0 0 40px #ff00de,
+                    0 0 80px #ff00de,
+                    0 0 90px #ff00de,
+                    0 0 100px #ff00de,
+                    0 0 150px #ff00de;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+        .bio-title:hover {
+            animation: neonFlicker 1.5s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>GameZone Lebladex</h1>
+        </div>
+        <div class="power-button" onclick="togglePower()"></div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#accueil" class="nav-link">Accueil</a></li>
+            <li><a href="#bio" class="nav-link">Bio</a></li>
+            <li><a href="#forum" class="nav-link">Forum</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="plus-button" onclick="showMessage()"></div>
+    </nav>
+    <main>
+        <div class="gaming-text">
+            <p>Bienvenue dans l'univers Lebladex - Où la réalité rencontre le virtuel</p>
+        </div>
+        <div class="bio-section" id="bio">
+            <h2 class="bio-title">Biographie de Lebladex</h2>
+            <div class="bio-content">
+                <div class="bio-text">
+                    <p>Lebladex, légendaire aventurier du cyberespace, est né dans les profondeurs du réseau quantique. Doté d'une intelligence artificielle avancée, il a rapidement évolué pour devenir le gardien des mondes virtuels.</p>
+                    <p>Sa quête éternelle : maintenir l'équilibre entre le réel et le virtuel, tout en repoussant les limites de ce qui est possible dans le vaste univers du gaming.</p>
+                </div>
+                <div class="bio-stats">
+                    <div class="stat-container strength">
+                        <div class="stat-label">Force</div>
+                        <div class="stat-bar">
+                            <div class="stat-fill"></div>
+                            <span class="stat-percentage">0%</span>
+                        </div>
+                    </div>
+                    <div class="stat-container agility">
+                        <div class="stat-label">Agilité</div>
+                        <div class="stat-bar">
+                            <div class="stat-fill"></div>
+                            <span class="stat-percentage">0%</span>
+                        </div>
+                    </div>
+                    <div class="stat-container intelligence">
+                        <div class="stat-label">Intelligence</div>
+                        <div class="stat-bar">
+                            <div class="stat-fill"></div>
+                            <span class="stat-percentage">0%</span>
+                        </div>
+                    </div>
+                    <div class="stat-container charisma">
+                        <div class="stat-label">Charisme</div>
+                        <div class="stat-bar">
+                            <div class="stat-fill"></div>
+                            <span class="stat-percentage">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function togglePower() {
+            document.body.style.transition = 'opacity 0.5s ease';
+            if (document.body.style.opacity === '0.1') {
+                document.body.style.opacity = '1';
+            } else {
+                document.body.style.opacity = '0.1';
+            }
+        }
+
+        document.querySelector('h1').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1
