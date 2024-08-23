@@ -1,17 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --neon-green: #39ff14;
+    --neon-pink: #ff00ff;
+    --dark-bg: #0a0a0a;
+}
+
 body {
     font-family: 'Orbitron', sans-serif;
-    background-color: #0a0a0a;
-    color: #00ff00;
+    background-color: var(--dark-bg);
+    color: var(--neon-green);
     margin: 0;
     padding: 0;
-    background-image: url('https://via.placeholder.com/1920x1080.png?text=Gaming+Background');
+    background-image: url('/api/placeholder/1920/1080');
     background-size: cover;
     background-attachment: fixed;
+    line-height: 1.6;
 }
 
 header {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav ul {
@@ -22,15 +34,20 @@ nav ul {
 }
 
 nav ul li a {
-    color: #00ff00;
+    color: var(--neon-green);
     text-decoration: none;
     font-size: 1.2rem;
     text-transform: uppercase;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
 }
 
 nav ul li a:hover {
-    color: #ff00ff;
+    color: var(--neon-pink);
+    border-color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
+    box-shadow: 0 0 15px var(--neon-pink);
 }
 
 main {
@@ -38,15 +55,21 @@ main {
     margin: 2rem auto;
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.7);
-    border: 2px solid #00ff00;
-    box-shadow: 0 0 10px #00ff00;
+    border: 2px solid var(--neon-green);
+    box-shadow: 0 0 20px var(--neon-green);
+    border-radius: 10px;
 }
 
 h1 {
-    color: #ff00ff;
+    color: var(--neon-pink);
     text-align: center;
     font-size: 2.5rem;
-    text-shadow: 0 0 5px #ff00ff;
+    text-shadow: 0 0 10px var(--neon-pink);
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
 }
 
 footer {
@@ -56,4 +79,34 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    font-size: 0.9rem;
+}
+
+/* Animation pour le titre */
+@keyframes glow {
+    0% { text-shadow: 0 0 5px var(--neon-pink); }
+    50% { text-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink); }
+    100% { text-shadow: 0 0 5px var(--neon-pink); }
+}
+
+h1 {
+    animation: glow 2s infinite;
+}
+
+/* Style pour les boutons */
+.button {
+    background-color: var(--dark-bg);
+    color: var(--neon-green);
+    border: 2px solid var(--neon-green);
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--neon-green);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--neon-green);
 }
